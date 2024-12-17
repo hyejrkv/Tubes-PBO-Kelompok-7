@@ -6,7 +6,11 @@
 package com.tubespbo.carDealer.models;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import org.hibernate.annotations.CreationTimestamp;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 /**
  *
  * @author Icha
@@ -16,11 +20,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "")
 public class Penjualan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPenjualan;
+    @CreationTimestamp
     private LocalDateTime tanggalPenjualan;
     private int harga;
     private int jumlah;

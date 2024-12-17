@@ -9,6 +9,6 @@ package com.tubespbo.carDealer.models;
  *
  * @author Icha
  */
-public class PetugasDealer {
+public class PetugasDealer extends User{
 
 }
