@@ -10,7 +10,6 @@ package com.tubespbo.carDealer.models;
  * @author Icha
  */
 public interface Loginable {
-    public abstract void register();
     public abstract void login();
     public abstract void logout();
 }
