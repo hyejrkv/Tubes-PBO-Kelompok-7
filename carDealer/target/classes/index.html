@@ -7,34 +7,28 @@
     <title>Welcome to CarDealer</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel='stylesheet' href='index.css'>
+    <link rel='stylesheet' href='style.css'>
 </head>
 
 <body>
-        <header>
-            <div class="navbar">
-                <li><span><a href="">About</a></span></li>
-                <li><span><a href="" >Contact us</a></span></li>
-            </div>
-        </header>
+    <header>
+        <img class="logo" src="logo.png" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a href="#">Mobil</a></li>
+                <li><a href="#">Pabrikan</a></li>
+                <li><a href="#"></a>Penjualan</li>
+            </ul>
+        </nav>
+        <a class="cta" href="#"><button class="btn_header">Logout</button></a>
+    </header>
         <section>
-            <div class="form-box">
-                <div class="form-value">
-                    <form>
-                        <h2>Login</h2>
-                        <div class="inputbox"> <ion-icon name="mail-outline"></ion-icon> <input type="email" required>
-                            <label>Email</label>
-                        </div>
-                        <div class="inputbox"> <ion-icon name="lock-closed-outline"></ion-icon> <input type="password"
-                                required> <label>Password</label> </div>
-                        <div class="forget"> <label> <a href="#">Forgot
-                                Password?</a> </div> <button>Log In</button>
-                        <div class="register">
-                            <p>Don't have an account? <a href="#">Sign Up</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <form class="form">
+                <p class="heading">Login</p>
+                <input class="input" placeholder="Username" type="text" required> <!--required-->
+                <input class="input" placeholder="Password" type="text" required> 
+                <a href="dealerMobil.html" type="button" class="btn">Login</a>
+            </form>
         </section> 
 </body>
 
