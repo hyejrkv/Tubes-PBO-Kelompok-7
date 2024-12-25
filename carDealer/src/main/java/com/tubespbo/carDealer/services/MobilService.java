@@ -38,6 +38,7 @@ public class MobilService {
         mobil.setPlatNomor(mobilDetails.getPlatNomor());
         mobil.setKapasitasMesin(mobilDetails.getKapasitasMesin());
         mobil.setJenis(mobilDetails.getJenis());
+        mobil.setHarga(mobilDetails.getHarga());
 
         return mobilRepository.save(mobil);
     }

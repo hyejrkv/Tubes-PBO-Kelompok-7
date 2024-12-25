@@ -27,4 +27,5 @@ public class Mobil {
     private String platNomor;
     private int kapasitasMesin;
     private String jenis;
+    private int harga;
 }

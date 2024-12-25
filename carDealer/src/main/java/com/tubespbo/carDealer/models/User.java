@@ -4,20 +4,23 @@
  */
 
 package com.tubespbo.carDealer.models;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import jakarta.persistence.*;
 /**
  *
  * @author Icha
  */
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Strategi Single Table
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING) // Kolom untuk tipe user
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +29,4 @@ public class User {
     private String password;
     private String nama;
     private String noTelp;
-    
-    
 }

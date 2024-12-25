@@ -4,11 +4,16 @@
  */
 
 package com.tubespbo.carDealer.models;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.DiscriminatorValue;
 /**
  *
  * @author Icha
  */
-public class SalesDealer extends User{
 
+
+@Entity
+@DiscriminatorValue("SALES") 
+public class SalesDealer extends User {
+    
 }

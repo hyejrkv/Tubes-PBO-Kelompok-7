@@ -4,30 +4,33 @@
  */
 
 package com.tubespbo.carDealer.models;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import org.hibernate.annotations.CreationTimestamp;
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
 /**
  *
  * @author Icha
  */
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
 public class Penjualan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPenjualan;
+
     @CreationTimestamp
     private LocalDateTime tanggalPenjualan;
-    private int harga;
-    private int jumlah;
-    
-    
+
+    @ManyToOne
+    @JoinColumn(name = "id_mobil", nullable = false)
+    private Mobil mobil;
 }
