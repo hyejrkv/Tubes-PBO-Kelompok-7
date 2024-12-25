@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CarDealerApplication<carDealer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tubespbo.carDealer.CarDealerApplication",
+            "projectName": "carDealer",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

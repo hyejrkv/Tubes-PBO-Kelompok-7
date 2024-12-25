@@ -32,7 +32,7 @@ public class MobilService {
     public Mobil updateMobil(int id, Mobil mobilDetails) {
         Mobil mobil = mobilRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Mobil not found"));
-
+        mobil.setNama(mobilDetails.getNama());
         mobil.setNoRangka(mobilDetails.getNoRangka());
         mobil.setNoMesin(mobilDetails.getNoMesin());
         mobil.setPlatNomor(mobilDetails.getPlatNomor());

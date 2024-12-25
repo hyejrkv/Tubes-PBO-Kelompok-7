@@ -22,6 +22,7 @@ public class Mobil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMobil;
+    private String nama;
     private String noRangka;
     private String noMesin;
     private String platNomor;

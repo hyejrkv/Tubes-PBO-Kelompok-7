@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobils | CarDealer</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <img class="logo" src="logo.png" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a href="petugasMobil.html">Mobil</a></li>
+                <li><a href="petugasPabrikan.html">Pabrikan</a></li>
+                <li><a href="petugasPenjualan.html">Penjualan</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="index.html"><button class="btn_header">Logout</button></a>
+    </header>
+
+    <section>
+        <div class="feature">
+            <div class="feature-col">
+                <a type="button" class="btn-add" onclick="openModal()">Add Mobil</a>
+            </div>
+            <div class="feature-col">
+                <input class="feature-input" name="searchM" placeholder="Search mobil..." type="search">
+            </div>
+            <div class="feature-col">
+                <input class="feature-input" name="searchP" placeholder="Search pabrikan..." type="search">
+            </div>
+        </div>
+        
+    </section>
+    <div class="listMobil">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nomor</th>
+                    <th>Nama</th>
+                    <th>No. Rangka</th>
+                    <th>No. Mesin</th>
+                    <th>Plat Nomor</th>
+                    <th>Kapasitas Mesin</th>
+                    <th>Jenis</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Toyota Avanza</td>
+                    <td>MH4JF81G9NK123456</td>
+                    <td>1NZ4567890</td>
+                    <td>B 1234 CD</td>
+                    <td>1500 cc</td>
+                    <td>MPV</td>
+                    <td>Rp 230.000.000</td>
+                    <td>
+                        <button class="btn-edit">Edit</button>
+                        <button class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- More car entries can be added here -->
+            </tbody>
+        </table>
+    </div>
+    <div id="mobilModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Car</h2>
+            <form id="mobilForm">
+                <input type="hidden" name="id">
+                <div class="form-group">
+                    <label>Nama:</label>
+                    <input type="text" name="nama" required>
+                </div>
+                <div class="form-group">
+                    <label>No. Rangka:</label>
+                    <input type="text" name="noRangka" required>
+                </div>
+                <div class="form-group">
+                    <label>No. Mesin:</label>
+                    <input type="text" name="noMesin" required>
+                </div>
+                <div class="form-group">
+                    <label>Plat Nomor:</label>
+                    <input type="text" name="platNomor" required>
+                </div>
+                <div class="form-group">
+                    <label>Kapasitas Mesin:</label>
+                    <input type="text" name="kapasitasMesin" required>
+                </div>
+                <div class="form-group">
+                    <label>Jenis:</label>
+                    <input type="text" name="jenis" required>
+                </div>
+                <div class="form-group">
+                    <label>Harga:</label>
+                    <input type="number" name="harga" required>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
