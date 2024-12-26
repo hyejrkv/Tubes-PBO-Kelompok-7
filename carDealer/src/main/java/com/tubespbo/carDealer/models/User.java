@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Strategi Single Table
 @DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING) // Kolom untuk tipe user
-public class User {
+public class User implements Loginable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
@@ -29,4 +29,16 @@ public class User {
     private String password;
     private String nama;
     private String noTelp;
+
+    @Override
+    public boolean login(String username, String password) {
+        // Logika untuk memverifikasi username dan password
+        return this.username.equals(username) && this.password.equals(password);
+    }
+
+    @Override
+    public void logout() {
+        // Logika untuk logout, misalnya menghapus sesi pengguna
+        System.out.println("User  " + username + " has logged out.");
+    }
 }
