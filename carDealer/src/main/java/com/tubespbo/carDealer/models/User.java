@@ -1,44 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package com.tubespbo.carDealer.models;
-/**
- *
- * @author Icha
- */
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name="user")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Strategi Single Table
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING) // Kolom untuk tipe user
-public class User implements Loginable {
+@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING) // Kolom untuk tipe user
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
+    
     private String username;
     private String password;
     private String nama;
     private String noTelp;
-
-    @Override
-    public boolean login(String username, String password) {
-        // Logika untuk memverifikasi username dan password
-        return this.username.equals(username) && this.password.equals(password);
+    
+    public User(){
+        
     }
-
-    @Override
-    public void logout() {
-        // Logika untuk logout, misalnya menghapus sesi pengguna
-        System.out.println("User  " + username + " has logged out.");
+    public User(int idUser, String username, String password, String nama, String role, String noTelp) {
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.nama = nama;
+        this.noTelp = noTelp;
     }
+    public int getIdUser() {
+        return idUser;
+    }
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getNama() {
+        return nama;
+    }
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+    public String getNoTelp() {
+        return noTelp;
+    }
+    public void setNoTelp(String noTelp) {
+        this.noTelp = noTelp;
+    }
+    
 }
+

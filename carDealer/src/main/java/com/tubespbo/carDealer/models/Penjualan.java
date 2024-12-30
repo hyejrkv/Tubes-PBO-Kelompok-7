@@ -1,27 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package com.tubespbo.carDealer.models;
-/**
- *
- * @author Icha
- */
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.*;
+
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name="penjualan")
 public class Penjualan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +19,39 @@ public class Penjualan {
     @ManyToOne
     @JoinColumn(name = "id_mobil", nullable = false)
     private Mobil mobil;
+    
+    public Penjualan() {
+    }
+    
+    public Penjualan(int idPenjualan, LocalDateTime tanggalPenjualan, Mobil mobil) {
+        this.idPenjualan = idPenjualan;
+        this.tanggalPenjualan = tanggalPenjualan;
+        this.mobil = mobil;
+    }
+
+    public int getIdPenjualan() {
+        return idPenjualan;
+    }
+
+    public void setIdPenjualan(int idPenjualan) {
+        this.idPenjualan = idPenjualan;
+    }
+
+    public LocalDateTime getTanggalPenjualan() {
+        return tanggalPenjualan;
+    }
+
+    public void setTanggalPenjualan(LocalDateTime tanggalPenjualan) {
+        this.tanggalPenjualan = tanggalPenjualan;
+    }
+
+    public Mobil getMobil() {
+        return mobil;
+    }
+
+    public void setMobil(Mobil mobil) {
+        this.mobil = mobil;
+    }
+
+    
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Rekap Penjualan | CarDealer</title>
+    <link rel='stylesheet' th:href="@{/style.css}">
+</head>
+<body>
+    <header>
+        <img class="logo" th:src="@{/logo.png}" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a th:href="@{/mobil}">Mobil</a></li>
+                <li><a th:href="@{/pabrikan}">Pabrikan</a></li>
+                <li><a th:href="@{/penjualan}">Penjualan</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href=""><button class="btn_header">Logout</button></a>
+    </header>
+    <section>
+        <div class="form">
+            <p class="heading">Form Rekap</p>
+            <form th:action="@{/penjualan/rekap}" method="post">
+                <div style="background-color: white; padding-bottom: 10px;">
+                    <label style="background-color: white;">Tanggal Mulai:</label>
+                    <input style="background-color: white;" type="datetime-local" name="startDate" required>
+                </div>
+                
+                <div style="background-color: white;">
+                    <label style="background-color: white;">Tanggal Selesai:</label>
+                    <input style="background-color: white;" type="datetime-local" name="endDate" required>
+                </div>
+                <div style="background-color: white;display: flex; justify-content: center;">
+                    <button type="submit" class="btn" style="max-width: 30vh;">Tampilkan Rekap</button>
+                    
+                </div>
+                <div style="background-color: white; padding-top: 30px;display: flex; justify-content: center;">
+                    <a th:href="@{/penjualan}" class="btn-delete">Kembali</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

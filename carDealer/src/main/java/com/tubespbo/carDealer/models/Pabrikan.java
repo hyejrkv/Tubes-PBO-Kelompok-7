@@ -1,32 +1,51 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package com.tubespbo.carDealer.models;
-/**
- *
- * @author Icha
- */
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+import jakarta.persistence.*;
+
+@Entity 
+@Table(name="pabrikan")
 public class Pabrikan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPabrikan;
+
     private String nama;
     private String noTelp;
     private String alamat;
+
+    public Pabrikan() {
+    }
+    
+    public Pabrikan(int idPabrikan, String nama, String noTelp, String alamat) {
+        this.idPabrikan = idPabrikan;
+        this.nama = nama;
+        this.noTelp = noTelp;
+        this.alamat = alamat;
+    }
+
+    public int getIdPabrikan() {
+        return idPabrikan;
+    }
+    public void setIdPabrikan(int idPabrikan) {
+        this.idPabrikan = idPabrikan;
+    }
+    public String getNama() {
+        return nama;
+    }
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+    public String getNoTelp() {
+        return noTelp;
+    }
+    public void setNoTelp(String noTelp) {
+        this.noTelp = noTelp;
+    }
+    public String getAlamat() {
+        return alamat;
+    }
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
 }
+

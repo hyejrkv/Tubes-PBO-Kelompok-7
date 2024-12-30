@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Mobil</title>
+    <link rel='stylesheet' th:href="@{/style.css}">
+</head>
+<body>
+    <header>
+        <img class="logo" th:src="@{/logo.png}" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a th:href="@{/mobil}">Mobil</a></li>
+                <li><a th:href="@{/pabrikan}">Pabrikan</a></li>
+                <li><a th:href="@{/penjualan}">Penjualan</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href=""><button class="btn_header">Logout</button></a>
+    </header>
+    <section>
+        <div class="form">
+            <p class="heading" style="margin-bottom: -20px;">Add Mobil</p>
+            <form th:action="@{${mobil.idMobil == 0 ? '/mobil/store' : '/mobil/update'}}" 
+                th:object="${mobil}" 
+                method="POST">
+                
+                <input type="hidden" th:field="*{idMobil}">
+                
+                <div style="background-color: white; padding-bottom: 2px;">
+                    <label style="background-color: white;">Nama:</label>
+                    <input style="background-color: white;"type="text" th:field="*{nama}" required>
+                </div>
+                
+                <div style="background-color: white;padding-bottom: 2px;">
+                    <label style="background-color: white;">No Rangka:</label>
+                    <input style="background-color: white;"type="text" th:field="*{noRangka}" required>
+                </div>
+                
+                <div style="background-color: white;padding-bottom: 2px;">
+                    <label style="background-color: white;">No Mesin:</label>
+                    <input style="background-color: white;"type="text" th:field="*{noMesin}" required>
+                </div>
+                
+                <div style="background-color: white;padding-bottom: 2px;">
+                    <label style="background-color: white;">Plat Nomor:</label>
+                    <input style="background-color: white;" type="text" th:field="*{platNomor}" required>
+                </div>
+                
+                <div style="background-color: white;padding-bottom: 2px;">
+                    <label style="background-color: white;">Kapasitas Mesin:</label>
+                    <input style="background-color: white;" type="number" th:field="*{kapasitasMesin}" required>
+                </div>
+                
+                <div style="background-color: white;padding-bottom: 2px;" >
+                    <label style="background-color: white;">Jenis:</label>
+                    <input style="background-color: white;"type="text" th:field="*{jenis}" required>
+                </div>
+                
+                <div style="background-color: white;padding-bottom: 2px;">
+                    <label style="background-color: white;">Harga:</label>
+                    <input style="background-color: white;" type="number" step="0.01" th:field="*{harga}" required>
+                </div>
+                
+                <div  style="background-color: white;padding-bottom: 2px;">
+                    <label style="background-color: white;">Pabrikan:</label>
+                    <select style="background-color: white;" th:field="*{pabrikan}" required>
+                        <option style="color: white;" value="">Pilih Pabrikan</option>
+                        <option th:each="p : ${pabrikans}"
+                                th:value="${p.idPabrikan}"
+                                th:text="${p.nama}" style="color: white;">
+                        </option>
+                    </select>
+                </div>
+                
+                <div style="background-color: white;">
+                    <button class="btn" type="submit">Simpan</button>
+                </div>
+                <div style="background-color: white; padding-top: 30px;display: flex; justify-content: center;">
+                    <a class="btn-delete" th:href="@{/mobil}">Batal</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

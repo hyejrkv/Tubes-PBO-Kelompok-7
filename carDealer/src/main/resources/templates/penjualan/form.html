@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Penjualan</title>
+    <link rel='stylesheet' th:href="@{/style.css}">
+</head>
+<body>
+    <header>
+        <img class="logo" th:src="@{/logo.png}" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a th:href="@{/mobil}">Mobil</a></li>
+                <li><a th:href="@{/pabrikan}">Pabrikan</a></li>
+                <li><a th:href="@{/penjualan}">Penjualan</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href=""><button class="btn_header">Logout</button></a>
+    </header>
+    <section>
+        <div class="form">
+            <p class="heading" style="margin-bottom: -20px;">Add Penjualan</p>
+            <form th:action="@{${penjualan.idPenjualan == 0 ? '/penjualan/store' : '/penjualan/update'}}" 
+    th:object="${penjualan}" 
+                      method="POST">
+                    
+                    <!-- Hidden ID field for editing -->
+                    <input type="hidden" th:field="*{idPenjualan}">
+                    
+                    <!-- Mobil Selection -->
+                    <div style="background-color: white;">
+                        <label style="background-color: white;">Mobil: </label>
+                        <select style="background-color: white;" th:field="*{mobil}" required>
+                            <option style="color: white;" value="">Pilih Mobil</option>
+                            <option th:each="m : ${mobilList}"
+                                    th:value="${m.idMobil}"
+                                    th:text="${m.nama + ' - ' + m.platNomor}" style="color: white;">
+                            </option>
+                        </select>
+                    </div>
+                    
+                    <!-- Tanggal Penjualan is handled automatically by @CreationTimestamp -->
+                    
+                    <!-- Submit Button -->
+                    <div style="background-color: white; padding-top: 30px;display: flex; justify-content: center;">
+                        <button type="submit" class="btn">Simpan</button>
+                    </div>
+                    <div style="background-color: white; padding-top: 30px;display: flex; justify-content: center;">
+                        <a th:href="@{/penjualan}" class="btn-delete">Kembali</a>
+                    </div>
+                </form>
+        </div>
+    </section>
+    
+</body>
+</html>

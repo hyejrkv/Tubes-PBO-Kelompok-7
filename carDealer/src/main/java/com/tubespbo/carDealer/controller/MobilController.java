@@ -1,46 +1,70 @@
 package com.tubespbo.carDealer.controller;
 
-import com.tubespbo.carDealer.models.Mobil;
-import com.tubespbo.carDealer.services.MobilService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.tubespbo.carDealer.services.MobilService;
+import com.tubespbo.carDealer.services.PabrikanService;
+import com.tubespbo.carDealer.models.Mobil;
 
-@RestController
-@RequestMapping("/api/mobil")
-
+@Controller
+@RequestMapping("/mobil")
 public class MobilController {
+
     @Autowired
     private MobilService mobilService;
-
-    @PostMapping
-    public Mobil createMobil(@RequestBody Mobil mobil) {
-        return mobilService.createMobil(mobil);
+    
+    @Autowired
+    private PabrikanService pabrikanService;
+    
+    @GetMapping("")
+    public String index(Model model, 
+                       @RequestParam(required = false) String searchM,
+                       @RequestParam(required = false) String searchP) {
+        if (searchM != null && !searchM.isEmpty()) {
+            model.addAttribute("mobil", mobilService.searchMobilByNama(searchM));
+        } else if (searchP != null && !searchP.isEmpty()) {
+            model.addAttribute("mobil", mobilService.searchMobilByPabrikan(searchP));
+        } else if (searchP == null || searchM.isEmpty()){
+            model.addAttribute("mobil", mobilService.getAllMobil());
+        } else {
+            model.addAttribute("mobil", mobilService.getAllMobil());
+        }
+        return "mobil/index";
     }
-
-    @GetMapping
-    public List<Mobil> getAllMobil() {
-        return mobilService.getAllMobil();
+    
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("mobil", new Mobil());
+        model.addAttribute("pabrikans", pabrikanService.getAllPabrikan());
+        return "mobil/form";
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Mobil> getMobilById(@PathVariable int id) {
-        Mobil mobil = mobilService.getMobilById(id)
-                .orElseThrow(() -> new RuntimeException("Mobil not found"));
-        return ResponseEntity.ok(mobil);
+    
+    @PostMapping("/store")
+    public String store(@ModelAttribute Mobil mobil) {
+        mobilService.saveMobil(mobil);
+        return "redirect:/mobil";
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Mobil> updateMobil(@PathVariable int id, @RequestBody Mobil mobilDetails) {
-        Mobil updatedMobil = mobilService.updateMobil(id, mobilDetails);
-        return ResponseEntity.ok(updatedMobil);
+    
+    @GetMapping("/edit")
+    public String edit(@RequestParam int id, Model model) {
+        model.addAttribute("mobil", mobilService.getMobilById(id).orElseThrow());
+        model.addAttribute("pabrikans", pabrikanService.getAllPabrikan());
+        return "mobil/form";
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteMobil(@PathVariable int id) {
+    
+    @PostMapping("/update")
+    public String update(@ModelAttribute Mobil mobil) {
+        mobilService.saveMobil(mobil);
+        return "redirect:/mobil";
+    }
+    
+    @GetMapping("/delete")
+    public String delete(@RequestParam int id) {
         mobilService.deleteMobil(id);
-        return ResponseEntity.ok("Mobil deleted successfully!");
+        return "redirect:/mobil";
     }
 }
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobil | CarDealer</title>
+    <link rel='stylesheet' th:href="@{/style.css}">
+</head>
+<body>
+    <header>
+        <img class="logo" th:src="@{/logo.png}" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a th:href="@{/mobil}">Mobil</a></li>
+                <li><a th:href="@{/pabrikan}">Pabrikan</a></li>
+                <li><a th:href="@{/penjualan}">Penjualan</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href=""><button class="btn_header">Logout</button></a>
+    </header>
+
+    <div class="section2">
+        <div class="feature">
+            
+            <a type="button" class="btn-add" th:href="@{/mobil/create}">Add Mobil</a>
+            
+            
+            <form th:action="@{/mobil}" method="get" >
+              
+                    <input class="feature-input"
+                           name="searchM" 
+                           placeholder="Search mobil..." 
+                           type="search"
+                           th:value="${param.searchM}">
+                
+                    <input class="feature-input" 
+                           name="searchP" 
+                           placeholder="Search pabrikan..." 
+                           type="search"
+                           th:value="${param.searchP}">
+                
+                    <button type="submit" class="btn-add" style="width: 52%;">Search</button>
+                    <a th:href="@{/mobil}" class="btn-delete">Reset</a>
+                
+            </form>
+            
+            
+        </div> 
+    </div>
+    <div class="listMobil">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>No. Rangka</th>
+                    <th>No. Mesin</th>
+                    <th>No. Plat</th>
+                    <th>Kapasitas Mesin</th>
+                    <th>Jenis</th>
+                    <th>Harga</th>
+                    <th>Pabrikan</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="m : ${mobil}">
+                    <td th:text="${m.nama}"></td>
+                    <td th:text="${m.noRangka}"></td>
+                    <td th:text="${m.noMesin}"></td>
+                    <td th:text="${m.platNomor}"></td>
+                    <td th:text="${m.kapasitasMesin}"></td>
+                    <td th:text="${m.jenis}"></td>
+                    <td th:text="${#numbers.formatDecimal(m.harga, 0, 'COMMA', 2, 'POINT')}"></td>
+                    <td th:text="${m.pabrikan.nama}"></td>
+                    <td>
+                        <a class="btn-edit" th:href="@{/mobil/edit(id=${m.idMobil})}">Edit</a>
+                        <a class="btn-delete" th:href="@{/mobil/delete(id=${m.idMobil})}" 
+                           onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+                <!-- More car entries can be added here -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjualan | CarDealer</title>
+    <link rel='stylesheet' th:href="@{/style.css}">
+</head>
+<body>
+    <header>
+        <img class="logo" th:src="@{/logo.png}" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a th:href="@{/mobil}">Mobil</a></li>
+                <li><a th:href="@{/pabrikan}">Pabrikan</a></li>
+                <li><a th:href="@{/penjualan}">Penjualan</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href=""><button class="btn_header">Logout</button></a>
+    </header>
+
+    <div>
+        <h2>Hasil Rekap Penjualan</h2>
+        
+        <div style="color: white; text-align: center; padding: 5px;">
+            <p>Periode: 
+                <span th:text="${#temporals.format(startDate, 'dd-MM-yyyy HH:mm')}"></span>
+                sampai
+                <span th:text="${#temporals.format(endDate, 'dd-MM-yyyy HH:mm')}"></span>
+            </p>
+            <p>Total Penjualan: <span th:text="${totalCount}"></span> unit</p>
+            <p>Total Nilai: Rp <span th:text="${#numbers.formatDecimal(totalAmount, 0, 'COMMA', 2, 'POINT')}"></span></p>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <a th:href="@{/penjualan/rekap}" class="btn-add">Rekap Baru</a>
+    
+        </div>
+        <div style="display: flex; justify-content: center; padding: 20px;">
+            <a th:href="@{/penjualan}" class="btn-delete">Kembali</a>
+        </div>
+        <div class="listMobil">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Mobil</th>
+                        <th>Nomor Plat</th>
+                        <th>Harga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${penjualanList}">
+                        <td th:text="${#temporals.format(p.tanggalPenjualan, 'dd-MM-yyyy HH:mm')}"></td>
+                        <td th:text="${p.mobil.nama}"></td>
+                        <td th:text="${p.mobil.platNomor}"></td>
+                        <td th:text="${#numbers.formatDecimal(p.mobil.harga, 0, 'COMMA', 2, 'POINT')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+</html>

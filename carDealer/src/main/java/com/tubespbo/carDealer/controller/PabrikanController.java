@@ -1,61 +1,59 @@
 package com.tubespbo.carDealer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tubespbo.carDealer.models.Pabrikan;
 import com.tubespbo.carDealer.services.PabrikanService;
+import com.tubespbo.carDealer.models.Pabrikan;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/pabrikan")
+@Controller
+@RequestMapping("/pabrikan")
 public class PabrikanController {
 
     @Autowired
     private PabrikanService pabrikanService;
-
-    // Get all Pabrikan
-    @GetMapping
-    public List<Pabrikan> getAllPabrikan() {
-        return pabrikanService.getAllPabrikan();
+    
+    @GetMapping("")
+    public String index(Model model, 
+                       @RequestParam(required = false) String searchNama,
+                       @RequestParam(required = false) String searchAlamat) {
+        model.addAttribute("pabrikan", pabrikanService.getAllPabrikan());
+        return "pabrikan/index";
     }
-
-    // Get Pabrikan by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Pabrikan> getPabrikanById(@PathVariable int id) {
-        return pabrikanService.getPabrikanById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("pabrikan", new Pabrikan());
+        return "pabrikan/form";
     }
-
-    // Create new Pabrikan
-    @PostMapping
-    public Pabrikan createPabrikan(@RequestBody Pabrikan pabrikan) {
-        return pabrikanService.savePabrikan(pabrikan);
+    
+    @PostMapping("/store")
+    public String store(@ModelAttribute Pabrikan pabrikan) {
+        pabrikanService.savePabrikan(pabrikan);
+        return "redirect:/pabrikan";
     }
-
-    // Update Pabrikan
-    @PutMapping("/{id}")
-    public ResponseEntity<Pabrikan> updatePabrikan(@PathVariable int id, @RequestBody Pabrikan pabrikanDetails) {
-        try {
-            Pabrikan updatedPabrikan = pabrikanService.updatePabrikan(id, pabrikanDetails);
-            return ResponseEntity.ok(updatedPabrikan);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    
+    @GetMapping("/edit")
+    public String edit(@RequestParam int id, Model model) {
+        model.addAttribute("pabrikan", pabrikanService.getPabrikanById(id).orElseThrow());
+        return "pabrikan/form";
     }
-
-    // Delete Pabrikan
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePabrikan(@PathVariable int id) {
-        try {
-            pabrikanService.deletePabrikan(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    
+    @PostMapping("/update")
+    public String update(@ModelAttribute Pabrikan pabrikan) {
+        pabrikanService.savePabrikan(pabrikan);
+        return "redirect:/pabrikan";
+    }
+    
+    @GetMapping("/delete")
+    public String delete(@RequestParam int id) {
+        pabrikanService.deletePabrikan(id);
+        return "redirect:/pabrikan";
     }
 }
-
