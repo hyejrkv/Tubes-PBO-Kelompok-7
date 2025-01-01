@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Welcome to CarDealer</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel='stylesheet' href='style.css'>
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="logo.png" alt="logo">
+        <nav>
+            <ul class="nav_links">
+                <li><a href="/mobil">Mobil</a></li>
+                <li><a href="/pabrikan">Pabrikan</a></li>
+                <li><a href="/penjualan"></a>Penjualan</li>
+            </ul>
+        </nav>
+        <a class="cta" href="/logout"><button class="btn_header">Logout</button></a>
+    </header>
+    <section>
+        <form class="form" th:action="@{/login}" method="post">
+            <p class="heading">Login</p>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <input class="input" name="username" placeholder="Username" type="text" required>
+            <input class="input" name="password" placeholder="Password" type="password" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </section>
+</body>
+
+</html>
