@@ -8,7 +8,9 @@
     background-color: #24252A;
 }
 
-li, a, button {
+li,
+a,
+button {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -59,7 +61,7 @@ header {
     transition: all 0.3s ease 0;
 }
 
-.btn_header:hover{
+.btn_header:hover {
     background-color: rgba(167, 49, 49, 0.8);
 }
 
@@ -76,7 +78,7 @@ section {
 }
 
 .section2 {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 20vh;
@@ -92,14 +94,14 @@ section {
     padding: 30;
 }
 
-header .navbar li{
+header .navbar li {
     display: table;
     height: 100%;
     float: left;
     margin-right: 30px;
 }
 
-header .navbar li:last-of-type{
+header .navbar li:last-of-type {
     margin-right: 40;
 }
 
@@ -111,17 +113,18 @@ header .navbar span {
 header .navbar a {
     color: #ffffff;
     text-align: center;
-    text-decoration:none;
+    text-decoration: none;
 }
 
-header .navbar .button{
-    background-color: #ffffff; /* This HEX is the color of the button */
+header .navbar .button {
+    background-color: #ffffff;
+    /* This HEX is the color of the button */
     color: #000000;
     padding: 10px 20px;
     border-radius: 4px;
 }
 
-header .navbar .button:hover{
+header .navbar .button:hover {
     filter: brightness(1.05);
 }
 
@@ -129,14 +132,14 @@ header .navbar .button:hover{
     position: relative;
     width: 400px;
     height: 450px;
-    background:rgb(152, 184, 206);
+    background: rgb(152, 184, 206);
     border: none;
     border-radius: 20px;
     backdrop-filter: blur(15px) brightness(80%);
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 5px 7px rgba(16, 16, 16, 0.3) ;
+    box-shadow: 0px 0px 5px 7px rgba(16, 16, 16, 0.3);
 }
 
 h2 {
@@ -245,6 +248,7 @@ button {
         border-radius: 0px;
     }
 }
+
 .form {
     display: flex;
     flex-direction: column;
@@ -255,43 +259,43 @@ button {
     transition: .4s ease-in-out;
     border: 1px solid #171717;
     box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
-  }
-  
-  .form:hover {
+}
+
+.form:hover {
     transform: translateX(-0.5em) translateY(-0.5em);
     border: 1px solid #171717;
     box-shadow: 10px 10px 0px #666666;
-  }
-  
-  .heading {
+}
+
+.heading {
     color: black;
     background-color: white;
     font-size: 2.5em;
     padding-bottom: 1em;
     text-align: center;
     font-weight: bold;
-  }
-  
-  .input {
+}
+
+.input {
     border-radius: 5px;
     border: 1px solid whitesmoke;
     background-color: whitesmoke;
     outline: none;
     padding: 0.7em;
     transition: .4s ease-in-out;
-  }
-  
-  .input:hover {
+}
+
+.input:hover {
     box-shadow: 6px 6px 0px #969696,
-               -3px -3px 10px #ffffff;
-  }
-  
-  .input:focus {
+        -3px -3px 10px #ffffff;
+}
+
+.input:focus {
     background: #ffffff;
-    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-  }
-  
-  .form .btn {
+    box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form .btn {
     margin-top: 2em;
     align-self: center;
     padding: 0.7em;
@@ -303,21 +307,21 @@ button {
     background-color: white;
     transition: .4s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
-  }
-  
-  .form .btn:hover {
+}
+
+.form .btn:hover {
     box-shadow: 6px 6px 0px #969696,
-               -3px -3px 10px #ffffff;
+        -3px -3px 10px #ffffff;
     transform: translateX(-0.5em) translateY(-0.5em);
-  }
-  
-  .form .btn:active {
+}
+
+.form .btn:active {
     transition: .2s;
     transform: translateX(0em) translateY(0em);
     box-shadow: none;
-  }
+}
 
-  .feature {
+.feature {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -325,8 +329,9 @@ button {
     background-color: #24252A;
     width: 100%;
     height: 5vw;
-  }
-  .btn-add {
+}
+
+.btn-add {
     margin-top: 2em;
     padding: 0.7em;
     padding-left: 1em;
@@ -337,14 +342,14 @@ button {
     background-color: white;
     transition: .4s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
-  }
+}
 
-  .btn-add:hover {
-    color:white;
+.btn-add:hover {
+    color: white;
     background-color: rgba(100, 185, 113, 0.8);
     box-shadow: 6px 6px 0px #969696;
     transform: translateX(-0.5em) translateY(-0.5em);
-  }
+}
 
 .feature-input {
     border-radius: 5px;
@@ -356,7 +361,7 @@ button {
     border: 1px solid #171717;
 }
 
-.feature-input:hover{
+.feature-input:hover {
     box-shadow: 6px 6px 0px #969696;
 }
 
@@ -368,16 +373,16 @@ button {
 
 .feature-input:focus {
     background: #ffffff;
-    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.h-notavail{
-        color: rgb(255, 255, 255);
-        background-color: none;
-        font-size: 2.5em;
-        padding-bottom: 1em;
-        text-align: center;
-        font-weight: bold;
+.h-notavail {
+    color: rgb(255, 255, 255);
+    background-color: none;
+    font-size: 2.5em;
+    padding-bottom: 1em;
+    text-align: center;
+    font-weight: bold;
 }
 
 .listMobil {
@@ -390,10 +395,10 @@ button {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.listMobil th, 
+.listMobil th,
 .listMobil td {
     padding: 12px 15px;
     text-align: left;
@@ -410,11 +415,11 @@ button {
     background-color: #f5f5f5;
 }
 
-.listMobil td:hover{
+.listMobil td:hover {
     color: #ddd;
 }
 
-.btn-edit, 
+.btn-edit,
 .btn-delete {
     padding: 6px 12px;
     margin: 0 4px;
@@ -448,7 +453,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
@@ -480,4 +485,32 @@ button {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-text {
+    color: white;
 }
