@@ -9,6 +9,16 @@
 </head>
 
 <body>
+    <script th:inline="javascript">
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            
+            if (error === 'constraint') {
+                alert('Cannot delete this penjualan.');
+            }
+        }
+    </script>
     <header>
         <img class="logo" th:src="@{/logo.png}" alt="logo">
         <nav>
@@ -24,9 +34,30 @@
     </header>
 
     <div class="section2">
+        
         <div class="feature">
-            <a th:href="@{/penjualan/create}" class="btn-add">Tambah Penjualan</a>
-            <a th:href="@{/penjualan/rekap}" class="btn-add">Rekap Penjualan</a>
+            <a 
+                th:if="${session.user != null && session.user.role == 'SALES'}"
+                th:href="@{/penjualan/create}"
+                class="btn-add"
+                >Tambah Penjualan</a>
+            <a 
+                th:if="${session.user != null && session.user.role == 'PETUGAS'}"
+                onclick="return confirm('Petugas Dealer can\'t access this feature')"
+                th:href="@{/penjualan/create}"
+                class="btn-add"
+                >Tambah Penjualan</a>
+            <a
+                th:if="${session.user != null && session.user.role == 'SALES'}"
+                th:href="@{/penjualan/rekap}"
+                class="btn-add"
+                >Rekap Penjualan</a>
+            <a
+                th:if="${session.user != null && session.user.role == 'PETUGAS'}"
+                onclick="return confirm('Petugas Dealer can\'t access this feature')"
+                th:href="@{/penjualan/rekap}"
+                class="btn-add"
+                >Rekap Penjualan</a>
         </div>
     </div>
     <div class="listMobil">
@@ -47,8 +78,26 @@
                     <td th:text="${p.mobil.platNomor}"></td>
                     <td th:text="${#numbers.formatDecimal(p.mobil.harga, 0, 'COMMA', 2, 'POINT')}"></td>
                     <td>
-                        <a th:href="@{/penjualan/edit(id=${p.idPenjualan})}" class="btn-edit">Edit</a>
-                        <a th:href="@{/penjualan/delete(id=${p.idPenjualan})}" onclick="return confirm('Are you sure?')"
+                        <a
+                            th:if="${session.user != null && session.user.role == 'SALES'}"
+                            th:href="@{/penjualan/edit(id=${p.idPenjualan})}"
+                            class="btn-edit"
+                            >Edit</a>
+                        <a
+                            th:if="${session.user != null && session.user.role == 'PETUGAS'}"
+                            th:href="@{/penjualan/edit(id=${p.idPenjualan})}"
+                            onclick="return confirm('Petugas Dealer can\'t access this feature')"
+                            class="btn-edit"
+                            >Edit</a>
+                        <a 
+                            th:if="${session.user != null && session.user.role == 'SALES'}"
+                            th:href="@{/penjualan/delete(id=${p.idPenjualan})}"
+                            onclick="return confirm('Are you sure?')"
+                            class="btn-delete">Hapus</a>
+                        <a 
+                            th:if="${session.user != null && session.user.role == 'PETUGAS'}"
+                            th:href="@{/penjualan/delete(id=${p.idPenjualan})}"
+                            onclick="return confirm('Petugas Dealer can\'t access this feature')"
                             class="btn-delete">Hapus</a>
                     </td>
                 </tr>

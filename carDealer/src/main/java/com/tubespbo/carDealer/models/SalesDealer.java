@@ -4,8 +4,7 @@
  */
 
 package com.tubespbo.carDealer.models;
-import jakarta.persistence.Entity;
-import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.*;
 /**
  *
  * @author Icha

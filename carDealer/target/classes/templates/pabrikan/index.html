@@ -9,6 +9,16 @@
 </head>
 
 <body>
+    <script th:inline="javascript">
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            
+            if (error === 'constraint') {
+                alert('Cannot delete this pabrikan because it is referenced by one or more mobil records. Try deleting those mobil records first.');
+            }
+        }
+    </script>
     <header>
         <img class="logo" th:src="@{/logo.png}" alt="logo">
         <nav>
@@ -24,9 +34,17 @@
     </header>
 
     <div class="section2">
+        
         <div class="feature">
-            <a type="button" class="btn-add" th:href="@{/pabrikan/create}">Add Pabrikan</a>
-
+            <a type="button" class="btn-add"
+                th:if="${session.user != null && session.user.role == 'PETUGAS'}" 
+                th:href="@{/pabrikan/create}">
+                Add Pabrikan</a>
+            <a type="button" class="btn-add" 
+                th:if="${session.user != null && session.user.role == 'SALES'}"
+                onclick="return confirm('Sales Dealer can\'t access this feature')"
+                th:href="@{/pabrikan/create}"
+                >Add Pabrikan</a>
         </div>
     </div>
     <div class="listMobil">
@@ -45,9 +63,24 @@
                     <td th:text="${p.alamat}"></td>
                     <td th:text="${p.noTelp}"></td>
                     <td>
-                        <a class="btn-edit" th:href="@{/pabrikan/edit(id=${p.idPabrikan})}">Edit</a>
-                        <a class="btn-delete" th:href="@{/mobil/delete(id=${p.idPabrikan})}"
+                        <a
+                            th:if="${session.user != null && session.user.role == 'PETUGAS'}"
+                            class="btn-edit"
+                            th:href="@{/pabrikan/edit(id=${p.idPabrikan})}"
+                            >Edit</a>
+                        <a th:if="${session.user != null && session.user.role == 'SALES'}"
+                            class="btn-edit"
+                            th:href="@{/pabrikan/edit(id=${p.idPabrikan})}"
+                            onclick="return confirm('Sales Dealer can\'t access this feature')"
+                            >Edit</a>
+                        <a class="btn-delete"
+                            th:if="${session.user != null && session.user.role == 'PETUGAS'}"
+                            th:href="@{/pabrikan/delete(id=${p.idPabrikan})}"
                             onclick="return confirm('Are you sure?')">Delete</a>
+                        <a class="btn-delete"
+                            th:if="${session.user != null && session.user.role == 'SALES'}"
+                            th:href="@{/pabrikan/delete(id=${p.idPabrikan})}"
+                            onclick="return confirm('Sales Dealer can\'t access this feature')">Delete</a>
                     </td>
                 </tr>
                 <!-- More car entries can be added here -->

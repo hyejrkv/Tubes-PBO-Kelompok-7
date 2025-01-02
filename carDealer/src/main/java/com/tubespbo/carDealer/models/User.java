@@ -15,6 +15,12 @@ public class User{
     private String password;
     private String nama;
     private String noTelp;
+    @Column(name = "role", insertable = false, updatable = false)
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
     
     public User(){
         
@@ -56,6 +62,5 @@ public class User{
     public void setNoTelp(String noTelp) {
         this.noTelp = noTelp;
     }
-    
 }
 

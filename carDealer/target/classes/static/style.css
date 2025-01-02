@@ -61,8 +61,21 @@ header {
     transition: all 0.3s ease 0;
 }
 
+.btn_header_login {
+    padding: 9px 25px;
+    background-color: rgb(64, 153, 198);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0;
+}
+
 .btn_header:hover {
     background-color: rgba(167, 49, 49, 0.8);
+}
+
+.btn_header_login:hover {
+    background-color: rgba(43, 115, 150, 0.685);
 }
 
 section {
